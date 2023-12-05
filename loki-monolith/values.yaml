@@ -1,0 +1,46 @@
+global:
+  dnsService: dns-default
+  dnsNamespace: openshift-dns
+
+loki:
+  auth_enabled: false
+  commonConfig:
+    replication_factor: 1
+  storage:
+    type: 'filesystem'
+  podSecurityContext:
+    fsGroup: null
+    runAsGroup: null
+    runAsNonRoot: true
+    runAsUser: null
+
+singleBinary:
+  replicas: 1
+
+monitoring:
+  rules:
+    enabled: false
+  selfMonitoring:
+    enabled: false
+    grafanaAgent:
+      installOperator: false
+  lokiCanary:
+    enabled: false
+  serviceMonitor:
+    enabled: false
+
+test:
+  enabled: false
+
+rbac:
+  namespaced: true
+
+gateway:
+  nginXConfig:
+    resolver: "dns-default.openshift-dns.svc.cluster.local"
+  podSecurityContext:
+    fsGroup: null
+    runAsGroup: null
+    runAsNonRoot: true
+    runAsUser: null
+
